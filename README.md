@@ -13,4 +13,5 @@ FCC成都社区 前端周刊，与你分享最新前端咨询~
 ### [前端周刊 - 第 7 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/8)    
 ### [前端周刊 - 第 8 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/10)  
 ### [前端周刊 - 第 9 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/11)
+### [前端周刊 - 第 9 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/13)
 
