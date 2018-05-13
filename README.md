@@ -1,6 +1,6 @@
-# FCC成都社区-前端周刊
-FCC成都社区 前端周刊，与你分享最新前端咨询~  
-   
+# FCC 成都社区-技术周刊
+FCC 成都社区·技术周刊，与你分享最新 IT 咨讯~
+   
 每周一 9:00 更新，欢迎订阅！
 
 
@@ -15,4 +15,4 @@ FCC成都社区 前端周刊，与你分享最新前端咨询~
 ### [前端周刊 - 第 9 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/11)
 ### [前端周刊 - 第 10 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/13)
 ### [前端周刊 - 第 11 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/14)
-
+### [技术周刊 - 第 12 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/15)
