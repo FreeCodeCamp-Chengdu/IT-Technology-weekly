@@ -3,6 +3,7 @@ FCC 成都社区·技术周刊，与你分享最新 IT 咨讯~
    
 每周一 9:00 更新，欢迎订阅！
 
+感谢编辑：[Lmagic](https://github.com/Lmagic16)、[HazelZ](https://github.com/HazelZ)、[Too](https://github.com/too)、[phobal](https://github.com/phobal)、[David Lin](https://github.com/wild-flame)
 
 ### [前端周刊 - 第 1 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/2)  
 ### [前端周刊 - 第 2 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/3)  
