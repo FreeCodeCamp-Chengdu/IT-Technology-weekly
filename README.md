@@ -18,4 +18,4 @@ FCC 成都社区·技术周刊，与你分享最新 IT 咨讯~
 ### [前端周刊 - 第 11 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/14)
 ### [技术周刊 - 第 12 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/15)
 ### [技术周刊 - 第 13 期](https://github.com/FreeCodeCamp-Chengdu/FrontEnd-weekly/issues/16)
-
+### [技术周刊 - 第 14 期](https://github.com/FreeCodeCamp-Chengdu/IT-Technology-weekly/issues/17)
