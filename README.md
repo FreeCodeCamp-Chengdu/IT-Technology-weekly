@@ -1,7 +1,7 @@
 # FCC 成都社区-技术周刊
 FCC 成都社区·技术周刊，与你分享最新 IT 咨讯~
    
-每周一 9:00 更新，欢迎订阅！
+每周一 8:30 更新，欢迎订阅！
 
 ![fcc 技术周刊封面](https://upload-images.jianshu.io/upload_images/7008018-6bf61f0dcc3f2fde.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/680)
 
