@@ -8,6 +8,7 @@ FCC 成都社区·技术周刊，与你分享最新 IT 咨讯~
 感谢周刊封面设计师：初一（王波）
 
 ## 归档
+### [技术周刊 - 第 28 期](https://github.com/FreeCodeCamp-Chengdu/IT-Technology-weekly/issues/34)
 ### [技术周刊 - 第 27 期](https://github.com/FreeCodeCamp-Chengdu/IT-Technology-weekly/issues/33)
 ### [技术周刊 - 第 26 期](https://github.com/FreeCodeCamp-Chengdu/IT-Technology-weekly/issues/32)
 ### [技术周刊 - 第 25 期](https://github.com/FreeCodeCamp-Chengdu/IT-Technology-weekly/issues/31)
