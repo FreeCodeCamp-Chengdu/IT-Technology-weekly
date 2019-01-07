@@ -52,3 +52,23 @@ export const getSelectedDocs = async (weeklyChoices: string[]) => {
     }
   ]);
 };
+
+export const updateWeekly = async () => {
+  return await prompt([
+    {
+      type: "input",
+      message: "标题",
+      name: "title"
+    },
+    {
+      type: "input",
+      message: "概要",
+      name: "excerpt"
+    },
+    {
+      type: "input",
+      message: "链接",
+      name: "link"
+    }
+  ]);
+};
