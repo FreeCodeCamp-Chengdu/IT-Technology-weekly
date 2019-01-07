@@ -14,6 +14,8 @@ enum WeeklyKey {
   d = "删除周刊"
 }
 
+type IWeeklyKey = keyof typeof WeeklyKey;
+
 const weeklyScript = {
   [WeeklyKey.add]: "add-weekly",
   [WeeklyKey.u]: "update-weekly",
@@ -30,6 +32,15 @@ export type IChoicesKey = keyof typeof Choices;
 
 const magicFlow = async () => {
   const action = process.argv[2] || "";
+  const subAction = process.argv[3];
+
+  if (Object.keys(WeeklyKey).includes(subAction)) {
+    run(ChoicesKey.weekly, {
+      WEEKLY_SCRIPT: weeklyScript[WeeklyKey[subAction as IWeeklyKey]]
+    });
+    return;
+  }
+
   const answer = (await ask(
     action,
     "Magic Flow",
