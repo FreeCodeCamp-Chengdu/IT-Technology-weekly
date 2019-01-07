@@ -1,5 +1,42 @@
 {
   "name": "it-technology-weekly",
   "private": true,
-  "description": "FCC 成都社区·技术周刊，与你分享最新 IT 咨讯~"
+  "description": "FCC 成都社区·技术周刊，与你分享最新 IT 咨讯~",
+  "scripts": {
+    "format": "prettier --write **/*.{ts,md}",
+    "wk": "ts-node ./tools/${WEEKLY_SCRIPT}.ts",
+    "start": "ts-node ./tools/index.ts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.{ts,md}": [
+      "npx prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "7.2.1",
+    "@commitlint/config-conventional": "7.1.2",
+    "@types/config": "0.0.34",
+    "@types/cross-spawn": "6.0.0",
+    "@types/figlet": "1.2.0",
+    "@types/fs-extra": "5.0.4",
+    "@types/inquirer": "0.0.43",
+    "chalk": "2.4.2",
+    "config": "3.0.1",
+    "cross-spawn": "6.0.5",
+    "figlet": "1.2.1",
+    "fs-extra": "7.0.1",
+    "husky": "1.3.1",
+    "inquirer": "6.2.1",
+    "lint-staged": "8.1.0",
+    "prettier": "1.15.3",
+    "ts-node": "7.0.1",
+    "typescript": "3.2.2"
+  }
 }
