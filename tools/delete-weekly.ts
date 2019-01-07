@@ -25,6 +25,10 @@ import { paths } from "./utils/paths";
   ]);
   const selectedDocs = (answer as any).result;
 
+  if (selectedDocs.length === 0) {
+    return;
+  }
+
   await selectedDocs.map((docs: string) => {
     remove(`${paths.weeklyDir}/${docs}`, err => {
       if (err) return console.error(err);
