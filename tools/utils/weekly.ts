@@ -1,4 +1,5 @@
 import { readdirSync } from "fs-extra";
+import { prompt } from "inquirer";
 
 import { paths } from "./paths";
 
@@ -31,4 +32,19 @@ export const getLtsWeeklyNum = (): number => {
     );
   }
   return 0;
+};
+
+export const getWeeklyChoices = () => {
+  return readdirSync(paths.weeklyDir);
+};
+
+export const getSelectedDocs = async (weeklyChoices: string[]) => {
+  return await prompt([
+    {
+      type: "checkbox",
+      message: "请选择",
+      name: "result",
+      choices: weeklyChoices
+    }
+  ]);
 };

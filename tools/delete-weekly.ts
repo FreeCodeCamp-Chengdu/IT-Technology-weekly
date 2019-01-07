@@ -1,26 +1,20 @@
-import { readdirSync, remove } from "fs-extra";
-import { prompt } from "inquirer";
+import { remove } from "fs-extra";
 
 import * as log from "./utils/log";
 import { paths } from "./utils/paths";
+import { getWeeklyChoices, getSelectedDocs } from "./utils/weekly";
 
 (async () => {
-  const weeklyChoices = readdirSync(paths.weeklyDir);
+  const weeklyChoices = getWeeklyChoices();
 
   if (weeklyChoices.length === 0) {
     log.error("failed", "目录为空，删除失败！");
     return;
   }
 
-  const answer = await prompt([
-    {
-      type: "checkbox",
-      message: "请选择",
-      name: "result",
-      choices: weeklyChoices
-    }
-  ]);
-  const selectedDocs = (answer as any).result;
+  const { result: selectedDocs } = (await getSelectedDocs(
+    weeklyChoices
+  )) as any;
 
   if (selectedDocs.length === 0) {
     return;
