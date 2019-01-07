@@ -1,17 +1,14 @@
 import { readdirSync, remove } from "fs-extra";
 import { prompt } from "inquirer";
-import chalk from "chalk";
 
+import * as log from "./utils/log";
 import { paths } from "./utils/paths";
 
 (async () => {
   const weeklyChoices = readdirSync(paths.weeklyDir);
 
   if (weeklyChoices.length === 0) {
-    console.log();
-    console.log(chalk["red"].bold.inverse("failed"));
-    console.log(chalk.yellow.bold(`目录为空，删除失败！`));
-    console.log();
+    log.error("failed", "目录为空，删除失败！");
     return;
   }
 
@@ -35,8 +32,5 @@ import { paths } from "./utils/paths";
     });
   });
 
-  console.log();
-  console.log(chalk["red"].bold.inverse("success"));
-  console.log(chalk.yellow.bold(`${selectedDocs.join("，")} 删除成功！`));
-  console.log();
+  log.error("success", `${selectedDocs.join("，")} 删除成功！`);
 })();

@@ -1,6 +1,7 @@
 import * as Config from "config";
 import { outputFile } from "fs-extra";
-import chalk from "chalk";
+
+import * as log from "./utils/log";
 
 import { paths } from "./utils/paths";
 import { getLtsWeeklyNum, getWeeklyMeta } from "./utils/weekly";
@@ -14,8 +15,5 @@ import { getLtsWeeklyNum, getWeeklyMeta } from "./utils/weekly";
 
   await outputFile(`${paths.weeklyDir}/${folderName}`, meta);
 
-  console.log();
-  console.log(chalk["green"].bold.inverse("success"));
-  console.log(chalk.yellow.bold(`${title} 第 ${weeklyNum} 期 创建成功！`));
-  console.log();
+  log.success("success", `${title} 第 ${weeklyNum} 期 创建成功！`);
 })();
