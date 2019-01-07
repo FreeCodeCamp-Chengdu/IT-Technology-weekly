@@ -6,6 +6,15 @@ import { paths } from "./utils/paths";
 
 (async () => {
   const weeklyChoices = readdirSync(paths.weeklyDir);
+
+  if (weeklyChoices.length === 0) {
+    console.log();
+    console.log(chalk["red"].bold.inverse("failed"));
+    console.log(chalk.yellow.bold(`目录为空，删除失败！`));
+    console.log();
+    return;
+  }
+
   const answer = await prompt([
     {
       type: "checkbox",
