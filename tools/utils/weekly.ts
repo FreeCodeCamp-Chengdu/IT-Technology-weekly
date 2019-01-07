@@ -38,6 +38,10 @@ export const getWeeklyChoices = () => {
   return readdirSync(paths.weeklyDir);
 };
 
+export const getWeeklyName = (weeklyNum: number) => {
+  return `issue-${weeklyNum < 10 ? `0${weeklyNum}` : weeklyNum}.md`;
+};
+
 export const getSelectedDocs = async (weeklyChoices: string[]) => {
   return await prompt([
     {
