@@ -1,7 +1,13 @@
-import { readdirSync } from "fs-extra";
+import { readFileSync, readdirSync, outputFile } from "fs-extra";
 import { prompt } from "inquirer";
 
 import { paths } from "./paths";
+
+interface IWeeklyItem {
+  title: string;
+  excerpt: string;
+  link: string;
+}
 
 export const getWeeklyMeta = ({
   title,
@@ -53,7 +59,7 @@ export const getSelectedDocs = async (weeklyChoices: string[]) => {
   ]);
 };
 
-export const newWeekly = async () => {
+export const newWeeklyPrompt = async () => {
   return await prompt([
     {
       type: "input",
@@ -71,4 +77,27 @@ export const newWeekly = async () => {
       name: "link"
     }
   ]);
+};
+
+export const getNewWeeklyText = (
+  mdText: string,
+  { title, excerpt, link }: IWeeklyItem
+) => {
+  return `${mdText}
+
+## [${title}](${link})
+
+${excerpt}`;
+};
+
+export const newWeekly = async () => {
+  const answers = await newWeeklyPrompt();
+
+  const ltsWeeklyNum = getLtsWeeklyNum();
+  const folderName = getWeeklyName(ltsWeeklyNum);
+  const fullPath = `${paths.weeklyDir}/${folderName}`;
+
+  const mdText = readFileSync(fullPath, "utf-8");
+
+  await outputFile(fullPath, getNewWeeklyText(mdText, answers as IWeeklyItem));
 };

@@ -1,15 +1,12 @@
 import * as Config from "config";
-import { outputFile, readFileSync } from "fs-extra";
 
 import * as log from "./utils/log";
 import {
   getWeeklyChoices,
   getSelectedDocs,
   newWeekly,
-  getWeeklyName,
   getLtsWeeklyNum
 } from "./utils/weekly";
-import { paths } from "./utils/paths";
 
 (async () => {
   const weeklyChoices = getWeeklyChoices();
@@ -27,23 +24,9 @@ import { paths } from "./utils/paths";
     return;
   }
 
-  const { title: weeklyTitle } = Config.get("weekly");
+  const { title } = Config.get("weekly");
   const ltsWeeklyNum = getLtsWeeklyNum();
-  const { title, excerpt, link } = (await newWeekly()) as any;
-  const folderName = getWeeklyName(ltsWeeklyNum);
-  const fullPath = `${paths.weeklyDir}/${folderName}`;
+  await newWeekly();
 
-  const mdText = readFileSync(fullPath, "utf-8");
-  await outputFile(
-    fullPath,
-    `${mdText}
-
-${title}
-
-${excerpt}
-
-${link}`
-  );
-
-  log.success("success", `${weeklyTitle} 第 ${ltsWeeklyNum} 期 修改成功！`);
+  log.success("success", `${title} 第 ${ltsWeeklyNum} 期 修改成功！`);
 })();
