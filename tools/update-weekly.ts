@@ -32,22 +32,33 @@ import {
   }
 
   const weeklyItem = await updateWeeklyContentPrompt();
+  const { title, tags: newTags, link } = weeklyItem as IWeeklyItem;
+
+  if (!title || newTags.length === 0 || !link) {
+    log.error("failed", `标题，标签和链接不能为空，修改失败！`);
+    return;
+  }
 
   const fullPath = `${paths.weeklyDir}/${selectedWeeklyName}`;
-  const { meta, content: preContent } = getWeeklyData(fullPath);
+  const {
+    meta: { count = 0, tags = [], ...otherMeta },
+    content: preContent
+  } = getWeeklyData(fullPath);
 
   await outputFile(
     fullPath,
     matter.stringify(
-      getWeeklyUpdatedContent(preContent, weeklyItem as IWeeklyItem),
+      getWeeklyUpdatedContent(preContent, weeklyItem as IWeeklyItem, count + 1),
       {
-        ...meta
+        ...otherMeta,
+        count: count + 1,
+        tags: [...new Set([...tags, ...newTags])]
       }
     )
   );
 
-  const { title } = Config.get("weekly");
+  const { title: weeklyTitle } = Config.get("weekly");
   const weeklyNum = getWeeklyNum(selectedWeeklyName);
 
-  log.success("success", `${title} 第 ${weeklyNum} 期 修改成功！`);
+  log.success("success", `${weeklyTitle} 第 ${weeklyNum} 期 修改成功！`);
 })();

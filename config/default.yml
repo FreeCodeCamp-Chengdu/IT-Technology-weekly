@@ -2,3 +2,4 @@ weekly:
   dir: "docs"
   title: "FCC 成都社区·技术周刊"
   author: "FCC 成都社区"
+  tags: ["教程", "工具", "其他"]

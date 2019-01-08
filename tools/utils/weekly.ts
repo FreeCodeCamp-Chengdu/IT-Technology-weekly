@@ -1,17 +1,30 @@
 import * as matter from "gray-matter";
+import * as Config from "config";
 import { readdirSync } from "fs-extra";
 import { prompt } from "inquirer";
 
 import { paths } from "./paths";
 
+export interface IWeekly {
+  title: string;
+  author: string;
+  link: string;
+  tags: string[];
+  count: number;
+}
+
 export interface IWeeklyItem {
   title: string;
   excerpt: string;
   link: string;
+  tags: string[];
 }
 
 export const getWeeklyData = (path: string) => {
-  const { data, content } = matter.read(path);
+  const { data, content } = matter.read(path) as {
+    data: IWeekly;
+    content: string;
+  };
   return { meta: data, content };
 };
 
@@ -62,41 +75,53 @@ export const getWeeklyInitMeta = ({
   author: string;
   weeklyNum: number;
 }) => {
-  return `---
-title: ${title} 第 ${weeklyNum} 期
-author: ${author}
-tags: 
-date: 
----`;
+  return matter.stringify("", {
+    title: `${title} 第 ${weeklyNum} 期`,
+    author: `${author}`,
+    count: 0
+  });
 };
 
 export const getWeeklyUpdatedContent = (
   preContent: string,
-  { title, excerpt, link }: IWeeklyItem
+  { title, excerpt, link }: IWeeklyItem,
+  index: number
 ) => {
   return `${preContent}
 
-## [${title}](${link})
+## ${index}、[${title}](${link})
 
 ${excerpt}`;
 };
 
 export const updateWeeklyContentPrompt = async () => {
+  const { tags } = Config.get("weekly");
+
   return await prompt([
     {
       type: "input",
       message: "标题",
-      name: "title"
+      name: "title",
+      default: "xxx"
+    },
+    {
+      type: "checkbox",
+      message: "标签",
+      name: "tags",
+      choices: tags,
+      default: tags.slice(0, 1)
     },
     {
       type: "input",
       message: "概要",
-      name: "excerpt"
+      name: "excerpt",
+      default: "xxx"
     },
     {
       type: "input",
       message: "链接",
-      name: "link"
+      name: "link",
+      default: "https://"
     }
   ]);
 };
