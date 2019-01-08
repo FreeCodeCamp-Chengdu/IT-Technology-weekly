@@ -5,7 +5,7 @@ import * as log from "./utils/log";
 import {
   getWeeklyChoices,
   getSelectedDocs,
-  updateWeekly,
+  newWeekly,
   getWeeklyName,
   getLtsWeeklyNum
 } from "./utils/weekly";
@@ -29,7 +29,7 @@ import { paths } from "./utils/paths";
 
   const { title: weeklyTitle } = Config.get("weekly");
   const ltsWeeklyNum = getLtsWeeklyNum();
-  const { title, excerpt, link } = (await updateWeekly()) as any;
+  const { title, excerpt, link } = (await newWeekly()) as any;
   const folderName = getWeeklyName(ltsWeeklyNum);
   const fullPath = `${paths.weeklyDir}/${folderName}`;
 

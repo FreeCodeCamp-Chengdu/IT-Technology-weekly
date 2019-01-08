@@ -53,7 +53,7 @@ export const getSelectedDocs = async (weeklyChoices: string[]) => {
   ]);
 };
 
-export const updateWeekly = async () => {
+export const newWeekly = async () => {
   return await prompt([
     {
       type: "input",
