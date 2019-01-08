@@ -1,7 +1,7 @@
 {
   "name": "it-technology-weekly",
   "private": true,
-  "description": "FCC 成都社区·技术周刊，与你分享最新 IT 咨讯~",
+  "description": "FCC 成都社区·技术周刊，与你分享最新 IT 资讯~",
   "scripts": {
     "format": "prettier --write **/*.{ts,md}",
     "wk": "ts-node ./tools/${WEEKLY_SCRIPT}.ts",
