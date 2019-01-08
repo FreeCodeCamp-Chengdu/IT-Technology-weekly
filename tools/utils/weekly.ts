@@ -1,40 +1,51 @@
-import { readFileSync, readdirSync, outputFile } from "fs-extra";
+import * as matter from "gray-matter";
+import { readdirSync } from "fs-extra";
 import { prompt } from "inquirer";
 
 import { paths } from "./paths";
 
-interface IWeeklyItem {
+export interface IWeeklyItem {
   title: string;
   excerpt: string;
   link: string;
 }
 
-export const getLtsWeeklyNum = (): number => {
-  const ltsWeeklyName = readdirSync(paths.weeklyDir).pop();
+export const getWeeklyData = (path: string) => {
+  const { data, content } = matter.read(path);
+  return { meta: data, content };
+};
 
-  if (ltsWeeklyName) {
-    return parseInt(
-      ltsWeeklyName.slice(
-        ltsWeeklyName.indexOf("-") + 1,
-        ltsWeeklyName.indexOf(".")
-      )
-    );
-  }
-  return 0;
+export const getWeeklyMeta = (path: string) => {
+  const { meta } = getWeeklyData(path);
+  return meta;
+};
+
+export const getWeeklyContent = (path: string) => {
+  const { content } = getWeeklyData(path);
+  return content;
+};
+
+export const getWeeklyNum = (weeklyName: string): number => {
+  return parseInt(
+    weeklyName.slice(weeklyName.indexOf("-") + 1, weeklyName.indexOf("."))
+  );
 };
 
 export const getWeeklyChoices = () => {
-  return readdirSync(paths.weeklyDir);
+  return readdirSync(paths.weeklyDir).reverse();
 };
 
 export const getWeeklyName = (weeklyNum: number) => {
   return `issue-${weeklyNum < 10 ? `0${weeklyNum}` : weeklyNum}.md`;
 };
 
-export const getSelectedDocsPrompt = async (weeklyChoices: string[]) => {
+export const getSelectedWeeklyPrompt = async (
+  type: "list" | "checkbox",
+  weeklyChoices: string[]
+) => {
   return await prompt([
     {
-      type: "checkbox",
+      type,
       message: "请选择",
       name: "result",
       choices: weeklyChoices
@@ -42,7 +53,35 @@ export const getSelectedDocsPrompt = async (weeklyChoices: string[]) => {
   ]);
 };
 
-export const newWeeklyPrompt = async () => {
+export const getWeeklyInitMeta = ({
+  title,
+  author,
+  weeklyNum
+}: {
+  title: string;
+  author: string;
+  weeklyNum: number;
+}) => {
+  return `---
+title: ${title} 第 ${weeklyNum} 期
+author: ${author}
+tags: 
+date: 
+---`;
+};
+
+export const getWeeklyUpdatedContent = (
+  preContent: string,
+  { title, excerpt, link }: IWeeklyItem
+) => {
+  return `${preContent}
+
+## [${title}](${link})
+
+${excerpt}`;
+};
+
+export const updateWeeklyContentPrompt = async () => {
   return await prompt([
     {
       type: "input",
@@ -60,44 +99,4 @@ export const newWeeklyPrompt = async () => {
       name: "link"
     }
   ]);
-};
-
-export const getNewWeeklyMeta = ({
-  title,
-  author,
-  weeklyNum
-}: {
-  title: string;
-  author: string;
-  weeklyNum: number;
-}) => {
-  return `---
-title: ${title} 第 ${weeklyNum} 期
-author: ${author}
-tags: 
-date: 
----`;
-};
-
-export const getNewWeeklyText = (
-  mdText: string,
-  { title, excerpt, link }: IWeeklyItem
-) => {
-  return `${mdText}
-
-## [${title}](${link})
-
-${excerpt}`;
-};
-
-export const newWeekly = async () => {
-  const answers = await newWeeklyPrompt();
-
-  const ltsWeeklyNum = getLtsWeeklyNum();
-  const folderName = getWeeklyName(ltsWeeklyNum);
-  const fullPath = `${paths.weeklyDir}/${folderName}`;
-
-  const mdText = readFileSync(fullPath, "utf-8");
-
-  await outputFile(fullPath, getNewWeeklyText(mdText, answers as IWeeklyItem));
 };

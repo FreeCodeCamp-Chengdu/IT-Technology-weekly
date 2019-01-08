@@ -1,8 +1,8 @@
-import { remove } from "fs-extra";
+import { removeSync } from "fs-extra";
 
 import * as log from "./utils/log";
 import { paths } from "./utils/paths";
-import { getWeeklyChoices, getSelectedDocsPrompt } from "./utils/weekly";
+import { getWeeklyChoices, getSelectedWeeklyPrompt } from "./utils/weekly";
 
 (async () => {
   const weeklyChoices = getWeeklyChoices();
@@ -12,19 +12,18 @@ import { getWeeklyChoices, getSelectedDocsPrompt } from "./utils/weekly";
     return;
   }
 
-  const { result: selectedDocs } = (await getSelectedDocsPrompt(
+  const { result: selectedWeeklys } = (await getSelectedWeeklyPrompt(
+    "checkbox",
     weeklyChoices
   )) as any;
 
-  if (selectedDocs.length === 0) {
+  if (selectedWeeklys.length === 0) {
     return;
   }
 
-  await selectedDocs.map((docs: string) => {
-    remove(`${paths.weeklyDir}/${docs}`, err => {
-      if (err) return console.error(err);
-    });
+  selectedWeeklys.map((weeklyName: string) => {
+    removeSync(`${paths.weeklyDir}/${weeklyName}`);
   });
 
-  log.error("success", `${selectedDocs.join("，")} 删除成功！`);
+  log.error("success", `${selectedWeeklys.join("，")} 删除成功！`);
 })();
