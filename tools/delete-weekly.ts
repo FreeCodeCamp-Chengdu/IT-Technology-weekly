@@ -2,7 +2,7 @@ import { remove } from "fs-extra";
 
 import * as log from "./utils/log";
 import { paths } from "./utils/paths";
-import { getWeeklyChoices, getSelectedDocs } from "./utils/weekly";
+import { getWeeklyChoices, getSelectedDocsPrompt } from "./utils/weekly";
 
 (async () => {
   const weeklyChoices = getWeeklyChoices();
@@ -12,7 +12,7 @@ import { getWeeklyChoices, getSelectedDocs } from "./utils/weekly";
     return;
   }
 
-  const { result: selectedDocs } = (await getSelectedDocs(
+  const { result: selectedDocs } = (await getSelectedDocsPrompt(
     weeklyChoices
   )) as any;
 

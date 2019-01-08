@@ -3,7 +3,7 @@ import * as Config from "config";
 import * as log from "./utils/log";
 import {
   getWeeklyChoices,
-  getSelectedDocs,
+  getSelectedDocsPrompt,
   newWeekly,
   getLtsWeeklyNum
 } from "./utils/weekly";
@@ -16,7 +16,7 @@ import {
     return;
   }
 
-  const { result: selectedDocs } = (await getSelectedDocs(
+  const { result: selectedDocs } = (await getSelectedDocsPrompt(
     weeklyChoices
   )) as any;
 

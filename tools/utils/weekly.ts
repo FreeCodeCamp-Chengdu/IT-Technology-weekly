@@ -48,7 +48,7 @@ export const getWeeklyName = (weeklyNum: number) => {
   return `issue-${weeklyNum < 10 ? `0${weeklyNum}` : weeklyNum}.md`;
 };
 
-export const getSelectedDocs = async (weeklyChoices: string[]) => {
+export const getSelectedDocsPrompt = async (weeklyChoices: string[]) => {
   return await prompt([
     {
       type: "checkbox",
