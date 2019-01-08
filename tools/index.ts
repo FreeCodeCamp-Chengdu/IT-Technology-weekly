@@ -11,7 +11,8 @@ enum ChoicesKey {
 enum WeeklyKey {
   add = "新增周刊",
   u = "修改周刊",
-  d = "删除周刊"
+  d = "删除周刊",
+  r = "发布周刊"
 }
 
 type IWeeklyKey = keyof typeof WeeklyKey;
@@ -19,7 +20,8 @@ type IWeeklyKey = keyof typeof WeeklyKey;
 const weeklyScript = {
   [WeeklyKey.add]: "add-weekly",
   [WeeklyKey.u]: "update-weekly",
-  [WeeklyKey.d]: "delete-weekly"
+  [WeeklyKey.d]: "delete-weekly",
+  [WeeklyKey.r]: "release-weekly"
 };
 
 const weeklyChoices = [WeeklyKey.add, WeeklyKey.u, WeeklyKey.d];
