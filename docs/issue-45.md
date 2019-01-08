@@ -5,6 +5,6 @@ tags:
 date:
 ---
 
-## [GitHub 宣布两个重大更新：私有仓库免费和 Enterprise 统一](https://blog.github.com/2019-01-07-new-year-new-github)
+## [GitHub 重磅消息！私有存储库从今天起完全免费，开发者期待已久](https://blog.github.com/2019-01-07-new-year-new-github)
 
-GitHub CEO Nat Friedman 今日宣布了两个重要更新：一是 GitHub 私有库现在可免费使用，每个免费的存储库最多可以有 3 人协作，如果想要更多的协作者，则需要付费；二是将 Enterprise Cloud （前身为 GitHub Business Cloud）和 Enterprise Server （前身为 GitHub Enterprise）统一为 GitHub Enterprise ，想要在云或自托管配置中灵活使用 GitHub 的组织现在只需付一个产品的价格就能同时使用这两项服务。
+今天，GitHub 正式宣布了开放 GitHub Free 和 GitHub Enterprise 两个重要更新，也是为了让开发人员更容易访问 GitHub：无限制的免费私有存储库，以及更简单，统一的企业产品。我们对 GitHub 发布的免费和企业产品的这些更新感到非常兴奋。
