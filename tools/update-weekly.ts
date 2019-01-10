@@ -27,10 +27,6 @@ import {
     weeklyChoices
   )) as any;
 
-  if (!selectedWeeklyName) {
-    return;
-  }
-
   const weeklyItem = await updateWeeklyContentPrompt();
   const { title, tags: newTags, link } = weeklyItem as IWeeklyItem;
 

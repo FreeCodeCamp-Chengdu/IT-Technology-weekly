@@ -82,7 +82,8 @@ export const getWeeklyInitMeta = ({
     title: `${title} 第 ${weeklyNum} 期`,
     author: `${author}`,
     count: 0,
-    editor: editors[weeklyNum % editors.length]
+    editor: editors[weeklyNum % editors.length],
+    published: false
   });
 };
 

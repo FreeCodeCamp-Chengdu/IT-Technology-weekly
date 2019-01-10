@@ -24,7 +24,7 @@ const weeklyScript = {
   [WeeklyKey.r]: "release-weekly"
 };
 
-const weeklyChoices = [WeeklyKey.add, WeeklyKey.u, WeeklyKey.d];
+const weeklyChoices = [WeeklyKey.add, WeeklyKey.u, WeeklyKey.d, WeeklyKey.r];
 
 const Choices = {
   [ChoicesKey.weekly]: weeklyChoices
