@@ -6,7 +6,7 @@ import { paths } from "./utils/paths";
 import {
   getWeeklyChoices,
   getSelectedWeeklyPrompt,
-  getWeeklyData
+  getWeeklyData,
 } from "./utils/weekly";
 
 (async () => {
@@ -19,7 +19,7 @@ import {
 
   const { result: selectedWeeklyName } = (await getSelectedWeeklyPrompt(
     "list",
-    weeklyChoices
+    weeklyChoices,
   )) as any;
 
   const fullPath = `${paths.weeklyDir}/${selectedWeeklyName}`;
@@ -29,8 +29,8 @@ import {
     fullPath,
     matter.stringify(content, {
       ...meta,
-      published: true
-    })
+      published: true,
+    }),
   );
 
   log.error("success", `${selectedWeeklyName} 发布成功！`);

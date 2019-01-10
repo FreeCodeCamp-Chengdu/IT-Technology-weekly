@@ -14,7 +14,7 @@ import { getWeeklyChoices, getSelectedWeeklyPrompt } from "./utils/weekly";
 
   const { result: selectedWeeklys } = (await getSelectedWeeklyPrompt(
     "checkbox",
-    weeklyChoices
+    weeklyChoices,
   )) as any;
 
   if (selectedWeeklys.length === 0) {

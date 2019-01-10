@@ -11,7 +11,7 @@ import {
   getWeeklyUpdatedContent,
   getWeeklyData,
   IWeeklyItem,
-  getWeeklyNum
+  getWeeklyNum,
 } from "./utils/weekly";
 
 (async () => {
@@ -24,7 +24,7 @@ import {
 
   const { result: selectedWeeklyName } = (await getSelectedWeeklyPrompt(
     "list",
-    weeklyChoices
+    weeklyChoices,
   )) as any;
 
   const weeklyItem = await updateWeeklyContentPrompt();
@@ -38,7 +38,7 @@ import {
   const fullPath = `${paths.weeklyDir}/${selectedWeeklyName}`;
   const {
     meta: { count = 0, tags = [], ...otherMeta },
-    content: preContent
+    content: preContent,
   } = getWeeklyData(fullPath);
 
   await outputFile(
@@ -48,9 +48,9 @@ import {
       {
         ...otherMeta,
         count: count + 1,
-        tags: [...new Set([...tags, ...newTags])]
-      }
-    )
+        tags: [...new Set([...tags, ...newTags])],
+      },
+    ),
   );
 
   const { title: weeklyTitle } = Config.get("weekly");

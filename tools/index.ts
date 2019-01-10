@@ -5,14 +5,14 @@ import { ask } from "./utils/ask";
 import { run } from "./utils/run";
 
 enum ChoicesKey {
-  weekly = "wk"
+  weekly = "wk",
 }
 
 enum WeeklyKey {
   add = "新增周刊",
   u = "修改周刊",
   d = "删除周刊",
-  r = "发布周刊"
+  r = "发布周刊",
 }
 
 type IWeeklyKey = keyof typeof WeeklyKey;
@@ -21,13 +21,13 @@ const weeklyScript = {
   [WeeklyKey.add]: "add-weekly",
   [WeeklyKey.u]: "update-weekly",
   [WeeklyKey.d]: "delete-weekly",
-  [WeeklyKey.r]: "release-weekly"
+  [WeeklyKey.r]: "release-weekly",
 };
 
 const weeklyChoices = [WeeklyKey.add, WeeklyKey.u, WeeklyKey.d, WeeklyKey.r];
 
 const Choices = {
-  [ChoicesKey.weekly]: weeklyChoices
+  [ChoicesKey.weekly]: weeklyChoices,
 };
 
 export type IChoicesKey = keyof typeof Choices;
@@ -38,7 +38,7 @@ const magicFlow = async () => {
 
   if (Object.keys(WeeklyKey).includes(subAction)) {
     run(ChoicesKey.weekly, {
-      WEEKLY_SCRIPT: weeklyScript[WeeklyKey[subAction as IWeeklyKey]]
+      WEEKLY_SCRIPT: weeklyScript[WeeklyKey[subAction as IWeeklyKey]],
     });
     return;
   }
@@ -46,7 +46,7 @@ const magicFlow = async () => {
   const answer = (await ask(
     action,
     "Magic Flow",
-    Choices[(action || ChoicesKey.weekly) as IChoicesKey]
+    Choices[(action || ChoicesKey.weekly) as IChoicesKey],
   )) as WeeklyKey;
 
   run(ChoicesKey.weekly, { WEEKLY_SCRIPT: weeklyScript[answer] });
