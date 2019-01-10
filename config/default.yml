@@ -2,5 +2,5 @@ weekly:
   dir: "docs"
   title: "FCC 成都社区·技术周刊"
   author: "FCC 成都社区"
-  tags: ["教程", "工具", "其他"]
+  tags: ["前端", "后端", "其他"]
   editors: ["wild-flame", "FengShangWuQi", "Lmagic16", "phobal"]
