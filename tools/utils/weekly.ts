@@ -11,6 +11,7 @@ export interface IWeekly {
   link: string;
   tags: string[];
   count: number;
+  editor: string;
 }
 
 export interface IWeeklyItem {
@@ -75,10 +76,13 @@ export const getWeeklyInitMeta = ({
   author: string;
   weeklyNum: number;
 }) => {
+  const { editors } = Config.get("weekly");
+
   return matter.stringify("", {
     title: `${title} 第 ${weeklyNum} 期`,
     author: `${author}`,
-    count: 0
+    count: 0,
+    editor: editors[weeklyNum % editors.length]
   });
 };
 
